@@ -106,6 +106,7 @@
     returncode=0
     {% for interface in all_interfaces_changed | reverse %}
     ifdown {% if ansible_os_family == 'Debian' %}--allow auto {% endif %}{{ interface }};
+    ip addr flush {{interface}};
     {% endfor %}
 
     {% for interface in all_interfaces_changed %}
